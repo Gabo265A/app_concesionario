@@ -7,14 +7,6 @@ const QuotationRequestScreen = () => {
   const [email, setEmail] = useState('');
   const [phoneNumber, setPhoneNumber] = useState('');
 
-  const handleRequest = () => {
-    // Aquí puedes manejar la lógica para enviar la solicitud de cotización, como enviar los datos a un servidor, etc.
-    console.log('Tipo de Vehículo:', vehicleType);
-    console.log('Nombre completo:', fullName);
-    console.log('Correo electrónico:', email);
-    console.log('Número de Celular:', phoneNumber);
-  };
-
   return (
     <View style={styles.container}>
       <Text style={styles.label}>Tipo de Vehículo:</Text>
@@ -51,7 +43,7 @@ const QuotationRequestScreen = () => {
         keyboardType="phone-pad"
       />
 
-      <Button title="Solicitar Cotización" onPress={handleRequest} />
+      <Button title="Solicitar Cotización" />
     </View>
   );
 };
@@ -59,18 +51,18 @@ const QuotationRequestScreen = () => {
 const styles = StyleSheet.create({
   container: {
     flex: 1,
-    padding: 20,
+    padding: 25,
   },
   label: {
-    fontSize: 16,
+    fontSize: 18,
     marginBottom: 5,
   },
   input: {
-    height: 40,
-    borderColor: 'gray',
+    height: 45,
+    borderColor: 'red',
     borderWidth: 1,
-    marginBottom: 20,
-    paddingHorizontal: 10,
+    marginBottom: 23,
+    paddingHorizontal: 12,
   },
 });
 
