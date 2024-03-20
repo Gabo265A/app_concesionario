@@ -1,12 +1,13 @@
 import React from 'react'
-
-import Catalog from './src/components/Catalog'
-import QuotationRequestScreen from './src/components/QuotationRequestScreen'
-import ContactScreen from './src/components/ContactScreen'
+import 'react-native-gesture-handler';
+import { NavigationContainer } from '@react-navigation/native';
+import { DrawerNavigation } from './src/navigation/DrawerNavigation';
 
 const App = () => {
   return (
-    <QuotationRequestScreen />
+    <NavigationContainer>
+      <DrawerNavigation />
+    </NavigationContainer>
   )
 }
 
