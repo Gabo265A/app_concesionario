@@ -4,7 +4,7 @@ import { Text } from 'react-native'
 export class QuotationRequestScreen extends Component {
   render() {
     return (
-      <Text>Solicitud de cotización</Text>
+      <Text>Solicitud de cotización.</Text>
     )
   }
 }
