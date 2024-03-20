@@ -1,11 +1,11 @@
-import AppointmentSchedule from './AppointmentSchedule'
-import Catalog from './Catalog'
-import ContactScreen from './ContactScreen'
-import Offers from './Offers'
-import QuotationRequestScreen from './QuotationRequestScreen'
-import Search from './Search'
-import ServiceHistory from './serviceHistory'
-import WorkshopService from './workshopService'
+import AppointmentSchedule from '../components/AppointmentSchedule'
+import Catalog from '../components/Catalog'
+import ContactScreen from '../components/ContactScreen'
+import Offers from '../components/Offers'
+import QuotationRequestScreen from '../components/QuotationRequestScreen'
+import Search from '../components/Search'
+import ServiceHistory from '../components/serviceHistory'
+import WorkshopService from '../components/workshopService'
 
 import React from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
