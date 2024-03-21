@@ -6,7 +6,6 @@ const OffersPromotionsScreen = () => {
 
   const toggleNotifications = () => {
     setNotificationsEnabled(previousState => !previousState);
-   
   };
 
   return (
