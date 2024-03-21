@@ -15,10 +15,10 @@ const Drawer = createDrawerNavigator();
 export function DrawerNavigation() {
     return (
         <Drawer.Navigator>
-            <Drawer.Screen name="Solicitar cotización" component={QuotationRequestScreen} />
             <Drawer.Screen name="Buscar" component={Search} />
             <Drawer.Screen name="Solicitar prueba de manejo" component={AppointmentSchedule} />
             <Drawer.Screen name="Catálogo" component={Catalog} />
+            <Drawer.Screen name="Solicitar cotización" component={QuotationRequestScreen} />
             <Drawer.Screen name="Servicio de taller" component={WorkshopService} />
             <Drawer.Screen name="Historial de servicios" component={ServiceHistory} />
             <Drawer.Screen name="Ofertas" component={Offers} />
