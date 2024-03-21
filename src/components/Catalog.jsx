@@ -1,12 +1,11 @@
 import React from 'react'
-import VehicleList
-    from './VehicleList'
+import VehicleList from './VehicleList'
 
 const Catalog = () => {
     const vehicles = [
         {
             id: 1,
-            imageUrl: 'https://vehicle-images.dealerinspire.com/stock-images/chrome/99af6d1661ede0edbd86bc49fb6ad830.png',
+            imageUrl: 'https://www.honda-uni.mx/assets/1(5).0e895820.jpg',
             description: 'Honda Civic, 2024',
             price: 25000,
         },
