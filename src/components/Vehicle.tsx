@@ -1,26 +1,57 @@
 import react from 'react'
-import { View, Image, Text, StyleSheet } from 'react-native'
+import { View, Image, Text, StyleSheet, Button } from 'react-native'
 
 const Vehicle = ({ imageUrl, description, price }) => {
     return (
-        <View>
-            <Image
-                source={{ uri: imageUrl }}
-                style={style.image}
-            />
-            <Text style={{ marginTop: 10 }}>
-                {description}
-            </Text>
-            <Text style={{ marginTop: 5, fontWeight: 'bold' }}>${price}</Text>
+        <View style={styles.carListContainer}>
+            <View style={styles.carCard}>
+                <View style={{ flexDirection: 'row' }}>
+                    <Text style={{ fontSize: 25, fontWeight: 'bold', color: 'black', textAlign: 'center' }}>
+                        {description}</Text>
+                </View>
+                <Image
+                    source={{ uri: imageUrl }}
+                    style={styles.image}
+                />
+                <View style={styles.priceAndBuyButtonContainer}>
+                    <Text style={{ fontSize: 20, marginRight: 10 }}>${price}</Text>
+                    <Button title='Comprar' />
+                </View>
+
+            </View>
         </View>
     )
 
 }
 
-const style = StyleSheet.create({
+const styles = StyleSheet.create({
+    carListContainer: {
+        width: '95%',
+        margin: 10,
+        flex: 1,
+    }
+    ,
+    carCard: {
+        backgroundColor: '#fff',
+        borderRadius: 10,
+        padding: 10,
+        alignItems: 'center',
+    }
+    ,
+    priceAndBuyButtonContainer: {
+        flexDirection: 'row',
+        marginTop: 5,
+        marginBottom: 5,
+        justifyContent: 'center',
+        alignItems: 'center',
+        marginLeft: 145,
+    },
     image: {
-        width: 200,
-        height: 200
+        marginTop: 10,
+        marginBottom: 5,
+        width: '95%',
+        height: 200,
+        borderRadius: 10,
     }
 
 })
