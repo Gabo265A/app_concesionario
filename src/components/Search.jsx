@@ -49,8 +49,8 @@ const VehicleSearchScreen = () => {
   ];
 
   return (
-    <View style={styles.container}>
-      <ScrollView>
+    <ScrollView>
+      <View style={styles.container}>
         <Banner
           visible={visible}
           actions={[
@@ -97,8 +97,8 @@ const VehicleSearchScreen = () => {
         />
 
         <Button icon="magnify" mode="contained">Buscar vehículo</Button>
-      </ScrollView>
-    </View>
+      </View>
+    </ScrollView>
   );
 };
 
