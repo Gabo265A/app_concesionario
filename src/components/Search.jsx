@@ -114,17 +114,4 @@ const styles = StyleSheet.create({
   },
 });
 
-function checkIsNumeric(text) {
-  let onlyNumbers = true;
-  let numbers = '0123456789';
-
-  for (var i = 0; i < text.length; i++) {
-    if (numbers.indexOf(text[i]) === -1) {
-      onlyNumbers = false;
-      return onlyNumbers;
-    }
-    return onlyNumbers;
-  }
-}
-
 export default VehicleSearchScreen;
