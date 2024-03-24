@@ -1,59 +1,29 @@
 import react from 'react'
-import { View, Image, Text, StyleSheet, Button } from 'react-native'
+import { View, ScrollView } from 'react-native'
+import { Avatar, Button, Card, Text } from 'react-native-paper';
 
-const Vehicle = ({ imageUrl, description, price }) => {
+
+const Vehicle = ({ imageUrl, description, price, name, iconCar }) => {
+
+    const LeftContent = props => <Avatar.Icon {...props} icon={ iconCar } /> // Icono del vehículo
+
     return (
-        <View style={styles.carListContainer}>
-            <View style={styles.carCard}>
-                <View style={{ flexDirection: 'row' }}>
-                    <Text style={{ fontSize: 25, fontWeight: 'bold', color: 'black', textAlign: 'center' }}>
-                        {description}</Text>
-                </View>
-                <Image
-                    source={{ uri: imageUrl }}
-                    style={styles.image}
-                />
-                <View style={styles.priceAndBuyButtonContainer}>
-                    <Text style={{ fontSize: 20, marginRight: 10 }}>${price}</Text>
-                    <Button title='Comprar' />
-                </View>
-
+        <ScrollView style={{ backgroundColor: '#EEEEEE' }}>
+            <View style={{ margin: 10 }}>
+                <Card>
+                    <Card.Title title={name} subtitle={'$'+ price} left={LeftContent} />
+                    <Card.Content>
+                        <Text variant="bodyMedium">{description}</Text>
+                    </Card.Content>
+                    <Card.Cover source={{ uri: imageUrl }} style={ { width: '95%', marginLeft: '2.5%', marginTop: '2.5%' } }/>
+                    <Card.Actions>
+                        <Button mode='contained'>Más información</Button>
+                    </Card.Actions>
+                </Card>
             </View>
-        </View>
+        </ScrollView>
     )
 
 }
-
-const styles = StyleSheet.create({
-    carListContainer: {
-        width: '95%',
-        margin: 10,
-        flex: 1,
-    }
-    ,
-    carCard: {
-        backgroundColor: '#fff',
-        borderRadius: 10,
-        padding: 10,
-        alignItems: 'center',
-    }
-    ,
-    priceAndBuyButtonContainer: {
-        flexDirection: 'row',
-        marginTop: 5,
-        marginBottom: 5,
-        justifyContent: 'center',
-        alignItems: 'center',
-        marginLeft: 145,
-    },
-    image: {
-        marginTop: 10,
-        marginBottom: 5,
-        width: '95%',
-        height: 200,
-        borderRadius: 10,
-    }
-
-})
 
 export default Vehicle 

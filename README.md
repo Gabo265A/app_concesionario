@@ -14,3 +14,4 @@ npm install react-native-paper
 npm install react-native-vector-icons
 npm install @react-navigation/stack
 npm install react-native-paper-dates --save
+npm install @rneui/themed @rneui/base
