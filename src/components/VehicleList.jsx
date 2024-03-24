@@ -10,11 +10,11 @@ const VehicleList = ({ vehicles }) => {
                     key={vehicle.id}
                     imageUrl={vehicle.imageUrl}
                     description={vehicle.description}
-                    price={vehicle.price}
+                    price={vehicle.price.valueOf()}
+                    name={vehicle.name}
+                    iconCar={vehicle.iconCar}
                 />
-
             ))}
-
         </ScrollView>
     )
 }
