@@ -88,6 +88,7 @@ const TestDriveRequestScreen = () => {
           onChangeText={setEmail}
           label="Correo electrónico (opcional)"
           right={<TextInput.Icon icon="email" />}
+          keyboardType="email-address"
         />
 
         <Button icon="send" mode="contained">Enviar solicitud</Button>

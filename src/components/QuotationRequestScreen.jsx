@@ -23,6 +23,7 @@ const QuotationRequestScreen = () => {
           label="Correo"
           onChangeText={setEmail}
           value={email}
+          keyboardType='email-address'
         />
 
         <TextInput
