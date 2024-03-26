@@ -46,17 +46,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 20,
-  },
-  label: {
-    fontSize: 18,
-    marginBottom: 5,
-  },
-  input: {
-    height: 45,
-    marginBottom: 23,
-    borderWidth: 1,
-    borderColor: 'red',
-    paddingHorizontal: 12,
+    backgroundColor: '#EEEEEE', 
   },
 })
 
