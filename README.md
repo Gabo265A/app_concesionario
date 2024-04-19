@@ -15,3 +15,7 @@ npm install react-native-vector-icons
 npm install @react-navigation/stack
 npm install react-native-paper-dates --save
 npm install @rneui/themed @rneui/base
+npm install --save react-native-url-polyfill
+npm install --save @react-native-firebase/app
+npm install --save @react-native-firebase/auth
+npm install --save @react-native-firebase/firestore
