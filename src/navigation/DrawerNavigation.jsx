@@ -14,6 +14,9 @@ import { Drawer as DrawerPaper } from 'react-native-paper';
 import { BackHandler } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler'
 
+//Contexts
+import { VehicleContext } from '../context/vehicles/vehicleContext'
+
 const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props) {
@@ -137,9 +140,21 @@ export function DrawerNavigation() {
     return (
         <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
             <Drawer.Screen name="Inicio" component={Home} options={{ unmountOnBlur: true }} />
-            <Drawer.Screen name="Buscar" component={Search} options={{ unmountOnBlur: true }} />
+            <Drawer.Screen name="Buscar" options={{ unmountOnBlur: true }}>
+                {props => (
+                    <VehicleContext>
+                        <Search {...props} />
+                    </VehicleContext>
+                )}
+            </Drawer.Screen>
             <Drawer.Screen name="Solicitar prueba de manejo" component={AppointmentSchedule} options={{ unmountOnBlur: true }} />
-            <Drawer.Screen name="Catálogo" component={VehicleList} options={{ unmountOnBlur: true }} />
+            <Drawer.Screen name="Catálogo" options={{ unmountOnBlur: true }} >
+                {props => (
+                    <VehicleContext>
+                        <VehicleList {...props} />
+                    </VehicleContext>
+                )}
+            </Drawer.Screen>
             <Drawer.Screen name="Solicitar cotización" component={QuotationRequestScreen} options={{ unmountOnBlur: true }} />
             <Drawer.Screen name="Servicio de taller" component={WorkshopService} options={{ unmountOnBlur: true }} />
             <Drawer.Screen name="Historial de servicios" component={ServiceHistory} options={{ unmountOnBlur: true }} />
