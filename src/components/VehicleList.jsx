@@ -1,24 +1,17 @@
-import React, { useEffect } from 'react'
+import React, { useEffect, useState } from 'react'
 import { ScrollView } from 'react-native'
 import Vehicle from './Vehicle'
-import firestore from '@react-native-firebase/firestore'
+import { useVehicleContext, useGetCatalogList } from '../context/vehicles/vehicleContext'
 
 const VehicleList = () => {
-    const [catalog, setCatalog] = React.useState([])
 
-    async function getCatalog() {
-        try {
-            const catalogCollection = await firestore().collection('catalog').get()
-            setCatalog(catalogCollection.docs.map((vehicle) => vehicle.data()))
-        }
-        catch (error) {
-            console.error(error)
-        }
-    }
+    const getCatalog = useGetCatalogList()
 
     useEffect(() => {
         getCatalog()
     }, [])
+
+    const catalog = useVehicleContext()
 
     return (
         <ScrollView>
