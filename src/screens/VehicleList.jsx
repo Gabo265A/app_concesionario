@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from 'react'
 import { ScrollView } from 'react-native'
-import Vehicle from './Vehicle'
+import Vehicle from '../components/Vehicle'
 import { useVehicleContext, useGetCatalogList } from '../context/vehicles/vehicleContext'
 
 const VehicleList = () => {

@@ -1,12 +1,12 @@
-import AppointmentSchedule from '../components/AppointmentSchedule'
-import VehicleList from '../components/VehicleList'
-import ContactScreen from '../components/ContactScreen'
-import Offers from '../components/Offers'
-import QuotationRequestScreen from '../components/QuotationRequestScreen'
-import Search from '../components/Search'
-import ServiceHistory from '../components/serviceHistory'
-import WorkshopService from '../components/workshopService'
-import Home from '../components/Home'
+import AppointmentSchedule from '../screens/AppointmentSchedule'
+import VehicleList from '../screens/VehicleList'
+import ContactScreen from '../screens/ContactScreen'
+import Offers from '../screens/Offers'
+import QuotationRequestScreen from '../screens/QuotationRequestScreen'
+import Search from '../screens/Search'
+import ServiceHistory from '../screens/serviceHistory'
+import WorkshopService from '../screens/workshopService'
+import Home from '../screens/Home'
 
 import React, { useState, useEffect } from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';

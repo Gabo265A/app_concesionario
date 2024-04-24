@@ -57,7 +57,7 @@ const TestDriveRequestScreen = () => {
         />
 
         <TextInput
-          style={ styles.input }
+          style={styles.input}
           value={fullName}
           onChangeText={setFullName}
           label="Nombre y apellidos"
