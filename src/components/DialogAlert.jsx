@@ -1,25 +1,27 @@
-import React from 'react';
-import { View, StyleSheet, Alert } from 'react-native';
+import React, { useState } from 'react'
+import { Button, Dialog, Text } from 'react-native-paper'
 
-const DialogAlert = ({ executeFunction }) => {
-    const createTwoButtonAlert = () =>
-        Alert.alert('Atención', '¡No deje ningún campo vacío!', [
-            { text: 'Continuar', onPress: () => executeFunction() },
-        ], { cancelable: true, onDismiss: () => executeFunction() });
+const DialogAlert = ({ alertMessage, changeVisibility }) => {
+    const [visible, setVisible] = useState(true)
 
     return (
-        <View style={styles.container}>
-            {createTwoButtonAlert()}
-        </View>
+        <Dialog visible={visible} onDismiss={() => {
+            setVisible(false)
+            changeVisibility(false)
+        }}
+        >
+            <Dialog.Title>Atención</Dialog.Title>
+            <Dialog.Content>
+                <Text variant="bodyMedium">{alertMessage}</Text>
+            </Dialog.Content>
+            <Dialog.Actions>
+                <Button onPress={() => {
+                    setVisible(false)
+                    changeVisibility(false)
+                }}>Entendido</Button>
+            </Dialog.Actions>
+        </Dialog>
     );
 };
 
-const styles = StyleSheet.create({
-    container: {
-        flex: 1,
-        justifyContent: 'space-around',
-        alignItems: 'center',
-    },
-});
-
-export default DialogAlert;
+export default DialogAlert
