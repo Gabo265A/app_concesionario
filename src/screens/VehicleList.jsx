@@ -20,7 +20,7 @@ const VehicleList = () => {
                         imageUrl={vehicle.image}
                         description={vehicle.description}
                         price={Intl.NumberFormat('es-CO').format(vehicle.price)}
-                        name={vehicle.name}
+                        name={vehicle.name + ", " + vehicle.year}
                         iconCar={vehicle.icon}
                     />
                 ))
