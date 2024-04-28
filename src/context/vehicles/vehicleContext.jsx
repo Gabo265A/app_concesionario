@@ -26,34 +26,25 @@ export function VehicleContext(props) {
         showActivity(true)
         await getCatalog()
         const keywordArray = keyword.split(" ")
-        let exactMatches = []
-        let partialMatches = []
-        let isExactMatchFound = false
-        for (const vehicle of catalog) {
-            if (vehicle.name.toLowerCase() === keyword.toLowerCase()) {
-                exactMatches.push(vehicle)
-                isExactMatchFound = true
-                break
+        vehiclesReturn = []
+        catalog.filter(vehicle => {
+            const vehicleInformation = vehicle.brand + ";" + vehicle.model + ";" + vehicle.year + ";" + vehicle.price + "" + vehicle.name;
+            if (vehicleInformation.toLowerCase().includes(keyword.toLowerCase())) {
+                vehiclesReturn.push(vehicle)
             } else {
                 for (let i = 0; i < keywordArray.length; i++) {
-                    if (vehicle.brand == (keywordArray[i].toLowerCase())) {
-                        partialMatches.push(vehicle)
-                        break
-                    } else if (vehicle.model == (keywordArray[i].toLowerCase())) {
-                        partialMatches.push(vehicle)
-                        break
-                    } else if (vehicle.year == (keywordArray[i].toLowerCase())) {
-                        partialMatches.push(vehicle)
-                        break
-                    } else if (vehicle.price == (keywordArray[i].toLowerCase())) {
-                        partialMatches.push(vehicle)
-                        break
+                    if (vehicleInformation.toLowerCase().includes(keywordArray[i].toLowerCase())) {
+                        vehiclesReturn.push(vehicle)
+                        break;
                     }
                 }
             }
+        })
+        if (vehiclesReturn.length > 0) {
+            setVehicles(vehiclesReturn)
+        } else {
+            setVehicles([])
         }
-
-        setVehicles(isExactMatchFound ? exactMatches : partialMatches)
         showActivity(false)
     }
 
