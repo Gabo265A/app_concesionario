@@ -95,7 +95,7 @@ const VehicleSearchScreen = () => {
               imageUrl={vehicle.image}
               description={vehicle.description}
               price={Intl.NumberFormat('es-CO').format(vehicle.price)}
-              name={vehicle.name + ", " + vehicle.year}
+              name={vehicle.name}
               iconCar={vehicle.icon}
             />
           )) : carInformation ? <View style={{ padding: 20, paddingTop: 0, flex: 1, justifyContent: "center", alignItems: "center" }}>
