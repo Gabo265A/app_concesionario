@@ -10,7 +10,7 @@ import Home from '../screens/Home'
 
 import React, { useState, useEffect } from 'react';
 import { createDrawerNavigator } from '@react-navigation/drawer';
-import { Drawer as DrawerPaper, Text } from 'react-native-paper';
+import { Drawer as DrawerPaper } from 'react-native-paper';
 import { BackHandler } from 'react-native';
 import { ScrollView } from 'react-native-gesture-handler'
 
@@ -139,27 +139,27 @@ function CustomDrawerContent(props) {
 export function DrawerNavigation() {
     return (
         <Drawer.Navigator drawerContent={props => <CustomDrawerContent {...props} />}>
-            <Drawer.Screen name="Inicio" component={Home} options={{ unmountOnBlur: true, title: "Inicio", headerTitleAlign: "center" }} />
-            <Drawer.Screen name="Buscar" options={{ unmountOnBlur: true, title: "Buscar vehículos", headerTitleAlign: "center" }}>
+            <Drawer.Screen name="Inicio" component={Home} options={{ unmountOnBlur: true }} />
+            <Drawer.Screen name="Buscar" options={{ unmountOnBlur: true }}>
                 {props => (
                     <VehicleContext>
                         <Search {...props} />
                     </VehicleContext>
                 )}
             </Drawer.Screen>
-            <Drawer.Screen name="Solicitar prueba de manejo" component={AppointmentSchedule} options={{ unmountOnBlur: true, title: "Solicitar prueba", headerTitleAlign: "center" }} />
-            <Drawer.Screen name="Catálogo" options={{ unmountOnBlur: true, title: "Catálogo", headerTitleAlign: "center" }} >
+            <Drawer.Screen name="Solicitar prueba de manejo" component={AppointmentSchedule} options={{ unmountOnBlur: true }} />
+            <Drawer.Screen name="Catálogo" options={{ unmountOnBlur: true }} >
                 {props => (
                     <VehicleContext>
                         <VehicleList {...props} />
                     </VehicleContext>
                 )}
             </Drawer.Screen>
-            <Drawer.Screen name="Solicitar cotización" component={QuotationRequestScreen} options={{ unmountOnBlur: true, title: "Cotiza tu vehículo", headerTitleAlign: "center" }} />
-            <Drawer.Screen name="Servicio de taller" component={WorkshopService} options={{ unmountOnBlur: true, title: "Taller", headerTitleAlign: "center" }} />
-            <Drawer.Screen name="Historial de servicios" component={ServiceHistory} options={{ unmountOnBlur: true, title: "Historial", headerTitleAlign: "center" }} />
-            <Drawer.Screen name="Ofertas" component={Offers} options={{ unmountOnBlur: true, title: "Ofertas", headerTitleAlign: "center" }} />
-            <Drawer.Screen name="Contacto" component={ContactScreen} options={{ unmountOnBlur: true, title: "Contáctanos", headerTitleAlign: "center" }} />
+            <Drawer.Screen name="Solicitar cotización" component={QuotationRequestScreen} options={{ unmountOnBlur: true }} />
+            <Drawer.Screen name="Servicio de taller" component={WorkshopService} options={{ unmountOnBlur: true }} />
+            <Drawer.Screen name="Historial de servicios" component={ServiceHistory} options={{ unmountOnBlur: true }} />
+            <Drawer.Screen name="Ofertas" component={Offers} options={{ unmountOnBlur: true }} />
+            <Drawer.Screen name="Contacto" component={ContactScreen} options={{ unmountOnBlur: true }} />
         </Drawer.Navigator>
     );
 }
