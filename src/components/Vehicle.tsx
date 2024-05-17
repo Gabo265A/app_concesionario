@@ -1,16 +1,15 @@
 import react from 'react'
-import { View, ScrollView } from 'react-native'
+import { View, ScrollView, StyleSheet } from 'react-native'
 import { Avatar, Button, Card, Text } from 'react-native-paper';
 
+const Vehicle = ({ imageUrl, description, price, name, iconCar }: any) => {
 
-const Vehicle = ({ imageUrl, description, price, name, iconCar }) => {
-
-    const LeftContent = props => <Avatar.Icon {...props} icon={iconCar} /> // Icono del vehículo
-
+    const LeftContent = (props: any) => <Avatar.Icon {...props} icon={iconCar} /> // Icono del vehículo
+    
     return (
-        <ScrollView style={{ backgroundColor: '#EEEEEE' }}>
+        <ScrollView style={styles.container}>
             <View style={{ margin: 10 }}>
-                <Card>
+                <Card style={styles.card}>
                     <Card.Title title={name} subtitle={'$' + price} left={LeftContent} />
                     <Card.Content>
                         <Text variant="bodyMedium">{description}</Text>
@@ -25,5 +24,17 @@ const Vehicle = ({ imageUrl, description, price, name, iconCar }) => {
     )
 
 }
+
+const styles = StyleSheet.create({
+    container: {
+        flex: 1,
+        backgroundColor: 'white',
+    },
+    card: {
+        backgroundColor: 'white',
+        borderRadius: 20,
+        marginBottom: 5
+    }
+})
 
 export default Vehicle 
