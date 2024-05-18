@@ -29,11 +29,13 @@ import {SafeAreaView} from 'react-native-safe-area-context';
 import UserContext from '../context/users/UserContext';
 
 import BottomBarContext from '../context/BottomBar/BottomBarContext';
+import ActiveContext from '../context/ActiveContext/ActiveContext';
 
 const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props) {
   const {setIsDrawerOpen} = useContext(BottomBarContext);
+  const {setActiveScreen, activeScreen} = useContext(ActiveContext);
   const drawerIsOpen = props.navigation.getState().history;
   useEffect(() => {
     if (drawerIsOpen[1] && drawerIsOpen[1].status === 'open') {
@@ -43,11 +45,11 @@ function CustomDrawerContent(props) {
     }
   }, [drawerIsOpen]);
   const {userData, didTryAutoLogin, Logout} = useContext(UserContext);
-  const [active, setActive] = useState('first'); //Estado para guardar la pantalla activa
+
   useEffect(() => {
     const backAction = () => {
-      if (active !== 'first') {
-        setActive('first');
+      if (activeScreen !== 'home') {
+        setActiveScreen('home');
         props.navigation.navigate('Inicio');
         return true; // Esto previene que la app se cierre
       }
@@ -61,7 +63,7 @@ function CustomDrawerContent(props) {
     );
 
     return () => backHandler.remove(); // Limpia el listener al desmontar el componente
-  }, [active]); // Se ejecuta cada vez que 'active' cambia
+  }, [activeScreen]); // Se ejecuta cada vez que 'active' cambia
 
   return (
     <ScrollView
@@ -87,7 +89,7 @@ function CustomDrawerContent(props) {
             didTryAutoLogin
               ? console.log('Crear screen del profile')
               : props.navigation.navigate('Welcome');
-            setActive('tenth');
+            setActiveScreen('userProfile');
           }}
           style={{
             borderColor: '#e7e6e6',
@@ -129,9 +131,9 @@ function CustomDrawerContent(props) {
             <DrawerPaper.Item
               icon="home"
               label="Inicio"
-              active={active === 'first'}
+              active={activeScreen === 'home'}
               onPress={() => {
-                setActive('first');
+                setActiveScreen('home');
                 props.navigation.navigate('Inicio');
               }}
               style={{marginTop: 8}}
@@ -139,80 +141,80 @@ function CustomDrawerContent(props) {
             <DrawerPaper.Item
               icon="magnify"
               label="Buscar vehículo"
-              active={active === 'second'}
+              active={activeScreen === 'vehicleSearch'}
               onPress={() => {
                 props.navigation.navigate('Buscar');
-                setActive('second');
+                setActiveScreen('vehicleSearch');
               }}
               style={{marginTop: 5}}
             />
             <DrawerPaper.Item
               icon="steering"
-              label="Prueba de manejo"
-              active={active === 'third'}
+              label="Solicitar prueba de manejo"
+              active={activeScreen === 'appointmentSchedule'}
               onPress={() => {
                 props.navigation.navigate('Solicitar prueba de manejo');
-                setActive('third');
+                setActiveScreen('appointmentSchedule');
               }}
               style={{marginTop: 5}}
             />
             <DrawerPaper.Item
               icon="shopping-search"
-              label="Catálogo"
-              active={active === 'fourth'}
+              label="Ver catálogo"
+              active={activeScreen === 'catalog'}
               onPress={() => {
                 props.navigation.navigate('Catálogo');
-                setActive('fourth');
+                setActiveScreen('catalog');
               }}
               style={{marginTop: 5}}
             />
             <DrawerPaper.Item
               icon="currency-usd"
-              label="Cotización"
-              active={active === 'fifth'}
+              label="Solicitar cotización"
+              active={activeScreen === 'quotationRequestScreen'}
               onPress={() => {
                 props.navigation.navigate('Solicitar cotización');
-                setActive('fifth');
+                setActiveScreen('quotationRequestScreen');
               }}
               style={{marginTop: 5}}
             />
             <DrawerPaper.Item
               icon="car-cog"
-              label="Servicio de taller"
-              active={active === 'sixth'}
+              label="Solicitar servicio de taller"
+              active={activeScreen === 'workshopService'}
               onPress={() => {
                 props.navigation.navigate('Servicio de taller');
-                setActive('sixth');
+                setActiveScreen('workshopService');
               }}
               style={{marginTop: 5}}
             />
             <DrawerPaper.Item
               icon="history"
               label="Historial de servicios"
-              active={active === 'seventh'}
+              active={activeScreen === 'serviceHistory'}
               onPress={() => {
                 props.navigation.navigate('Historial de servicios');
-                setActive('seventh');
+                setActiveScreen('serviceHistory');
               }}
               style={{marginTop: 5}}
             />
             <DrawerPaper.Item
               icon="offer"
-              label="Ofertas"
-              active={active === 'eighth'}
+              label="Activar ofertas"
+              active={activeScreen === 'offers'}
               onPress={() => {
                 props.navigation.navigate('Ofertas');
-                setActive('eighth');
+                setActiveScreen('offers');
               }}
               style={{marginTop: 5}}
             />
             <DrawerPaper.Item
               icon="contacts"
-              label="Contacto"
-              active={active === 'ninth'}
+              label="Medios de contacto"
+              active={activeScreen === 'contact'}
               onPress={() => {
                 props.navigation.navigate('Contacto');
-                setActive('ninth');
+                setActiveScreen('contact');
               }}
               style={{marginTop: 5, marginBottom: 5}}
             />
@@ -242,7 +244,7 @@ function CustomDrawerContent(props) {
           onPress={() => {
             {
               didTryAutoLogin ? Logout() : props.navigation.navigate('Welcome');
-              setActive('tenth');
+              setActiveScreen('userProfile');
             }
           }}>
           {didTryAutoLogin ? 'Cerrar sesión' : 'Iniciar sesión'}
