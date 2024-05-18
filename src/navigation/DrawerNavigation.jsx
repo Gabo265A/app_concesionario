@@ -7,14 +7,16 @@ import Search from '../screens/Search';
 import ServiceHistory from '../screens/serviceHistory';
 import WorkshopService from '../screens/workshopService';
 import Home from '../screens/Home';
+import Login from '../screens/Login';
 import Welcome from '../screens/Welcome';
+import Register from '../screens/Register';
 
-import React, {useState, useEffect} from 'react';
+import React, {useState, useEffect, useContext} from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {
   Drawer as DrawerPaper,
   Text,
-  Avatar,
+  IconButton,
   Divider,
   Button,
 } from 'react-native-paper';
@@ -24,12 +26,24 @@ import {ScrollView} from 'react-native-gesture-handler';
 //Contexts
 import {VehicleContext} from '../context/vehicles/vehicleContext';
 import {SafeAreaView} from 'react-native-safe-area-context';
+import UserContext from '../context/users/UserContext';
+
+import BottomBarContext from '../context/BottomBar/BottomBarContext';
 
 const Drawer = createDrawerNavigator();
 
 function CustomDrawerContent(props) {
+  const {setIsDrawerOpen} = useContext(BottomBarContext);
+  const drawerIsOpen = props.navigation.getState().history;
+  useEffect(() => {
+    if (drawerIsOpen[1] && drawerIsOpen[1].status === 'open') {
+      setIsDrawerOpen(true);
+    } else if (!drawerIsOpen[2]) {
+      setIsDrawerOpen(false);
+    }
+  }, [drawerIsOpen]);
+  const {userData, didTryAutoLogin, Logout} = useContext(UserContext);
   const [active, setActive] = useState('first'); //Estado para guardar la pantalla activa
-
   useEffect(() => {
     const backAction = () => {
       if (active !== 'first') {
@@ -57,6 +71,7 @@ function CustomDrawerContent(props) {
       }}>
       <SafeAreaView
         style={{
+          top: 5,
           height: '25%',
           with: '100%',
           justifyContent: 'center',
@@ -65,23 +80,43 @@ function CustomDrawerContent(props) {
           borderBotonWidth: 1,
           marginBottom: 10,
         }}>
-        <Avatar.Icon
+        <IconButton
           size={100}
-          icon="folder"
-          onPress={() => console.log('arroz')}
-          onPointerDown={() => console.log('arroz')}
+          icon="account"
+          onPress={() => {
+            didTryAutoLogin
+              ? console.log('Crear screen del profile')
+              : props.navigation.navigate('Welcome');
+            setActive('tenth');
+          }}
+          style={{
+            borderColor: '#e7e6e6',
+            borderWidth: 2,
+          }}
         />
         <Text
           style={{
             fontSize: 22,
             fontWeight: 'bold',
-            marginVertical: 6,
             color: '#111',
-          }}></Text>
+          }}>
+          Bienvenido/a
+        </Text>
+        <Text
+          style={{
+            fontSize: 15,
+            textAlign: 'center',
+            width: '80%',
+            color: '#111',
+          }}>
+          {didTryAutoLogin
+            ? userData.fullName
+            : 'Identíficate para una mejor experiencia'}
+        </Text>
       </SafeAreaView>
       <Divider
         style={{
-          backgroundColor: '#850CD7',
+          backgroundColor: '#663399',
           width: '95%',
           marginLeft: 'auto',
           marginRight: 'auto',
@@ -186,7 +221,7 @@ function CustomDrawerContent(props) {
       </ScrollView>
       <Divider
         style={{
-          backgroundColor: '#850CD7',
+          backgroundColor: '#663399',
           width: '95%',
           marginLeft: 'auto',
           marginRight: 'auto',
@@ -201,14 +236,16 @@ function CustomDrawerContent(props) {
           height: '10%',
         }}>
         <Button
-          icon="login"
+          icon={didTryAutoLogin ? 'logout' : 'login'}
           mode="contained"
           style={{}}
           onPress={() => {
-            props.navigation.navigate('Bienvenida');
-            setActive('tenth');
+            {
+              didTryAutoLogin ? Logout() : props.navigation.navigate('Welcome');
+              setActive('tenth');
+            }
           }}>
-          Identíficate
+          {didTryAutoLogin ? 'Cerrar sesión' : 'Iniciar sesión'}
         </Button>
       </SafeAreaView>
     </ScrollView>
@@ -223,17 +260,15 @@ export function DrawerNavigation() {
         name="Inicio"
         component={Home}
         options={{
+          headerShown: false,
           unmountOnBlur: true,
-          title: 'Inicio',
-          headerTitleAlign: 'center',
         }}
       />
       <Drawer.Screen
         name="Buscar"
         options={{
+          headerShown: false,
           unmountOnBlur: true,
-          title: 'Buscar vehículos',
-          headerTitleAlign: 'center',
         }}>
         {props => (
           <VehicleContext>
@@ -245,17 +280,15 @@ export function DrawerNavigation() {
         name="Solicitar prueba de manejo"
         component={AppointmentSchedule}
         options={{
+          headerShown: false,
           unmountOnBlur: true,
-          title: 'Solicitar prueba',
-          headerTitleAlign: 'center',
         }}
       />
       <Drawer.Screen
         name="Catálogo"
         options={{
+          headerShown: false,
           unmountOnBlur: true,
-          title: 'Catálogo',
-          headerTitleAlign: 'center',
         }}>
         {props => (
           <VehicleContext>
@@ -267,54 +300,64 @@ export function DrawerNavigation() {
         name="Solicitar cotización"
         component={QuotationRequestScreen}
         options={{
+          headerShown: false,
           unmountOnBlur: true,
-          title: 'Cotiza tu vehículo',
-          headerTitleAlign: 'center',
         }}
       />
       <Drawer.Screen
         name="Servicio de taller"
         component={WorkshopService}
         options={{
+          headerShown: false,
           unmountOnBlur: true,
-          title: 'Taller',
-          headerTitleAlign: 'center',
         }}
       />
       <Drawer.Screen
         name="Historial de servicios"
         component={ServiceHistory}
         options={{
+          headerShown: false,
           unmountOnBlur: true,
-          title: 'Historial',
-          headerTitleAlign: 'center',
         }}
       />
       <Drawer.Screen
         name="Ofertas"
         component={Offers}
         options={{
+          headerShown: false,
           unmountOnBlur: true,
-          title: 'Ofertas',
-          headerTitleAlign: 'center',
         }}
       />
       <Drawer.Screen
         name="Contacto"
         component={ContactScreen}
         options={{
+          headerShown: false,
           unmountOnBlur: true,
-          title: 'Contáctanos',
-          headerTitleAlign: 'center',
         }}
       />
       <Drawer.Screen
-        name="Bienvenida"
+        name="Welcome"
         component={Welcome}
         options={{
+          headerShown: false,
           unmountOnBlur: true,
-          title: 'Bienvenidos',
-          headerTitleAlign: 'center',
+        }}
+      />
+      <Drawer.Screen
+        name="SignIn"
+        component={Login}
+        options={{
+          headerShown: false,
+          unmountOnBlur: true,
+        }}
+      />
+      <Drawer.Screen
+        name="SignUp"
+        component={Register}
+        options={{
+          headerShown: false,
+          unmountOnBlur: true,
         }}
       />
     </Drawer.Navigator>
