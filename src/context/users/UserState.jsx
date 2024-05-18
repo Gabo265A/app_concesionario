@@ -25,7 +25,6 @@ const UserState = props => {
         const {uid, stsTokenManager} = user;
         const {accessToken, expirationTime} = stsTokenManager;
         const expirationDate = new Date(expirationTime);
-        console.log('\n\n\n');
         const userData = createUser(fullName, email, uid);
         dispatch({
           type: 'SIGNUP',
@@ -36,6 +35,7 @@ const UserState = props => {
       })
       .catch(error => {
         console.log(error);
+        return error;
       });
   };
 
@@ -62,6 +62,11 @@ const UserState = props => {
     );
   };
 
+  const Logout = () => {
+    AsyncStorage.removeItem('userData');
+    dispatch({type: 'LOGOUT'});
+  };
+
   const [state, dispatch] = useReducer(UserReducer, initialState);
 
   return (
@@ -72,6 +77,7 @@ const UserState = props => {
         token: state.token,
         firebase,
         signUp,
+        Logout,
       }}>
       {props.children}
     </UserContext.Provider>
