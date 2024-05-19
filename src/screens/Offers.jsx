@@ -1,5 +1,5 @@
-import React, { useState } from 'react';
-import { View, Text, Switch, StyleSheet } from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, Switch, StyleSheet} from 'react-native';
 
 const OffersPromotionsScreen = () => {
   const [notificationsEnabled, setNotificationsEnabled] = useState(false);
@@ -13,8 +13,8 @@ const OffersPromotionsScreen = () => {
       <Text style={styles.title}>Ofertas y Promociones</Text>
       <Text style={styles.subtitle}>Recibir Notificaciones:</Text>
       <Switch
-        trackColor={{ false: "#767577", true: "#81b0ff" }}
-        thumbColor={notificationsEnabled ? "#f5dd4b" : "#f4f3f4"}
+        trackColor={{false: '#767577', true: '#81b0ff'}}
+        thumbColor={notificationsEnabled ? '#f5dd4b' : '#f4f3f4'}
         ios_backgroundColor="#3e3e3e"
         onValueChange={toggleNotifications}
         value={notificationsEnabled}
@@ -32,6 +32,7 @@ const styles = StyleSheet.create({
     padding: 25,
     alignItems: 'center',
     justifyContent: 'center',
+    backgroundColor: 'white',
   },
   title: {
     fontSize: 24,

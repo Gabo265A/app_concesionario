@@ -1,7 +1,12 @@
-import React, { useState } from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
-import { Button, TextInput } from 'react-native-paper';
-import { DatePickerInput, registerTranslation, es, TimePickerModal } from 'react-native-paper-dates';
+import React, {useState} from 'react';
+import {View, StyleSheet, ScrollView} from 'react-native';
+import {Button, TextInput} from 'react-native-paper';
+import {
+  DatePickerInput,
+  registerTranslation,
+  es,
+  TimePickerModal,
+} from 'react-native-paper-dates';
 registerTranslation('es', es);
 
 const TestDriveRequestScreen = () => {
@@ -11,20 +16,20 @@ const TestDriveRequestScreen = () => {
   const [phoneNumber, setPhoneNumber] = useState('');
   const [email, setEmail] = useState('');
   const [dateTime, setDateTime] = useState('Click en el icono...');
-  const [visible, setVisible] = React.useState(false)
+  const [visible, setVisible] = React.useState(false);
 
   const onDismiss = React.useCallback(() => {
-    setVisible(false)
-  }, [setVisible])
+    setVisible(false);
+  }, [setVisible]);
 
   const onConfirm = React.useCallback(
-    ({ hours, minutes }) => {
+    ({hours, minutes}) => {
       if (minutes < 10) minutes = '0' + minutes.toString();
       if (hours < 10) hours = '0' + hours.toString();
       setVisible(false);
       setDateTime('Hora: ' + hours + ':' + minutes);
     },
-    [setVisible]
+    [setVisible],
   );
 
   return (
@@ -34,20 +39,31 @@ const TestDriveRequestScreen = () => {
           locale="es"
           label="Seleccione la fecha de la cita"
           value={date}
-          onChange={(d) => setDate(d)}
+          onChange={d => setDate(d)}
           inputMode="start"
-          validRange={{ startDate: new Date(), endDate: new Date(new Date().getFullYear(), new Date().getMonth(), new Date().getDate() + 14) }}
+          validRange={{
+            startDate: new Date(),
+            endDate: new Date(
+              new Date().getFullYear(),
+              new Date().getMonth(),
+              new Date().getDate() + 14,
+            ),
+          }}
         />
 
         <TextInput
-          style={{ marginBottom: 23, marginTop: 23 }}
-          value={dateTime === 'Click en el icono...' ? '' : dateTime.substring(6)}
-          right={<TextInput.Icon icon="clock" onPress={() => setVisible(true)} />}
+          style={{marginBottom: 23, marginTop: 23}}
+          value={
+            dateTime === 'Click en el icono...' ? '' : dateTime.substring(6)
+          }
+          right={
+            <TextInput.Icon icon="clock" onPress={() => setVisible(true)} />
+          }
           editable={false}
           label={dateTime != 'Click en el icono...' ? 'Hora' : dateTime}
         />
         <TimePickerModal
-          label='Selecciona la hora de la cita'
+          label="Selecciona la hora de la cita"
           locale="es"
           visible={visible}
           hours={new Date().getHours().toString()}
@@ -91,7 +107,9 @@ const TestDriveRequestScreen = () => {
           keyboardType="email-address"
         />
 
-        <Button icon="send" mode="contained">Enviar solicitud</Button>
+        <Button icon="send" mode="contained">
+          Enviar solicitud
+        </Button>
       </View>
     </ScrollView>
   );
@@ -101,7 +119,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 25,
-    backgroundColor: '#EEEEEE',
+    backgroundColor: 'white',
   },
   input: {
     marginBottom: 23,

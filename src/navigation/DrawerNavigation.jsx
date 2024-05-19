@@ -11,7 +11,7 @@ import Login from '../screens/Login';
 import Welcome from '../screens/Welcome';
 import Register from '../screens/Register';
 
-import React, {useState, useEffect, useContext} from 'react';
+import React, {useEffect, useContext} from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
 import {
   Drawer as DrawerPaper,
@@ -134,7 +134,7 @@ function CustomDrawerContent(props) {
               active={activeScreen === 'home'}
               onPress={() => {
                 setActiveScreen('home');
-                props.navigation.navigate('Inicio');
+                props.navigation.navigate('home');
               }}
               style={{marginTop: 8}}
             />
@@ -143,7 +143,7 @@ function CustomDrawerContent(props) {
               label="Buscar vehículo"
               active={activeScreen === 'vehicleSearch'}
               onPress={() => {
-                props.navigation.navigate('Buscar');
+                props.navigation.navigate('vehicleSearch');
                 setActiveScreen('vehicleSearch');
               }}
               style={{marginTop: 5}}
@@ -153,7 +153,7 @@ function CustomDrawerContent(props) {
               label="Solicitar prueba de manejo"
               active={activeScreen === 'appointmentSchedule'}
               onPress={() => {
-                props.navigation.navigate('Solicitar prueba de manejo');
+                props.navigation.navigate('appointmentSchedule');
                 setActiveScreen('appointmentSchedule');
               }}
               style={{marginTop: 5}}
@@ -163,7 +163,7 @@ function CustomDrawerContent(props) {
               label="Ver catálogo"
               active={activeScreen === 'catalog'}
               onPress={() => {
-                props.navigation.navigate('Catálogo');
+                props.navigation.navigate('catalog');
                 setActiveScreen('catalog');
               }}
               style={{marginTop: 5}}
@@ -173,7 +173,7 @@ function CustomDrawerContent(props) {
               label="Solicitar cotización"
               active={activeScreen === 'quotationRequestScreen'}
               onPress={() => {
-                props.navigation.navigate('Solicitar cotización');
+                props.navigation.navigate('quotationRequestScreen');
                 setActiveScreen('quotationRequestScreen');
               }}
               style={{marginTop: 5}}
@@ -183,7 +183,7 @@ function CustomDrawerContent(props) {
               label="Solicitar servicio de taller"
               active={activeScreen === 'workshopService'}
               onPress={() => {
-                props.navigation.navigate('Servicio de taller');
+                props.navigation.navigate('workshopService');
                 setActiveScreen('workshopService');
               }}
               style={{marginTop: 5}}
@@ -193,7 +193,7 @@ function CustomDrawerContent(props) {
               label="Historial de servicios"
               active={activeScreen === 'serviceHistory'}
               onPress={() => {
-                props.navigation.navigate('Historial de servicios');
+                props.navigation.navigate('serviceHistory');
                 setActiveScreen('serviceHistory');
               }}
               style={{marginTop: 5}}
@@ -203,7 +203,7 @@ function CustomDrawerContent(props) {
               label="Activar ofertas"
               active={activeScreen === 'offers'}
               onPress={() => {
-                props.navigation.navigate('Ofertas');
+                props.navigation.navigate('offers');
                 setActiveScreen('offers');
               }}
               style={{marginTop: 5}}
@@ -213,7 +213,7 @@ function CustomDrawerContent(props) {
               label="Medios de contacto"
               active={activeScreen === 'contact'}
               onPress={() => {
-                props.navigation.navigate('Contacto');
+                props.navigation.navigate('contact');
                 setActiveScreen('contact');
               }}
               style={{marginTop: 5, marginBottom: 5}}
@@ -259,7 +259,7 @@ export function DrawerNavigation() {
     <Drawer.Navigator
       drawerContent={props => <CustomDrawerContent {...props} />}>
       <Drawer.Screen
-        name="Inicio"
+        name="home"
         component={Home}
         options={{
           headerShown: false,
@@ -267,7 +267,7 @@ export function DrawerNavigation() {
         }}
       />
       <Drawer.Screen
-        name="Buscar"
+        name="vehicleSearch"
         options={{
           headerShown: false,
           unmountOnBlur: true,
@@ -279,7 +279,7 @@ export function DrawerNavigation() {
         )}
       </Drawer.Screen>
       <Drawer.Screen
-        name="Solicitar prueba de manejo"
+        name="appointmentSchedule"
         component={AppointmentSchedule}
         options={{
           headerShown: false,
@@ -287,7 +287,7 @@ export function DrawerNavigation() {
         }}
       />
       <Drawer.Screen
-        name="Catálogo"
+        name="catalog"
         options={{
           headerShown: false,
           unmountOnBlur: true,
@@ -299,7 +299,7 @@ export function DrawerNavigation() {
         )}
       </Drawer.Screen>
       <Drawer.Screen
-        name="Solicitar cotización"
+        name="quotationRequestScreen"
         component={QuotationRequestScreen}
         options={{
           headerShown: false,
@@ -307,7 +307,7 @@ export function DrawerNavigation() {
         }}
       />
       <Drawer.Screen
-        name="Servicio de taller"
+        name="workshopService"
         component={WorkshopService}
         options={{
           headerShown: false,
@@ -315,7 +315,7 @@ export function DrawerNavigation() {
         }}
       />
       <Drawer.Screen
-        name="Historial de servicios"
+        name="serviceHistory"
         component={ServiceHistory}
         options={{
           headerShown: false,
@@ -323,7 +323,7 @@ export function DrawerNavigation() {
         }}
       />
       <Drawer.Screen
-        name="Ofertas"
+        name="offers"
         component={Offers}
         options={{
           headerShown: false,
@@ -331,7 +331,7 @@ export function DrawerNavigation() {
         }}
       />
       <Drawer.Screen
-        name="Contacto"
+        name="contact"
         component={ContactScreen}
         options={{
           headerShown: false,

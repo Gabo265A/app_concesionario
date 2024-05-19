@@ -8,14 +8,16 @@ import ActiveContext from '../context/ActiveContext/ActiveContext';
 
 const BottomTab = () => {
   const navigation = useNavigation();
-  const {didTryAutoLogin} = useContext(UserContext);
+  const {didTryAutoLogin, isLoading} = useContext(UserContext);
   const {setActiveScreen, activeScreen} = useContext(ActiveContext);
 
   const {isDrawerOpen, setIsDrawerOpen} = useContext(BottomBarContext);
   return (
     <>
       {!isDrawerOpen && (
-        <View style={styles.container}>
+        <View
+          style={styles.container}
+          pointerEvents={isLoading ? 'none' : 'auto'}>
           <IconButton
             icon="menu"
             size={30}
@@ -30,7 +32,7 @@ const BottomTab = () => {
             size={30}
             iconColor={activeScreen === 'home' ? '#663399' : '#524f4f'}
             onPress={() => {
-              navigation.navigate('Inicio');
+              navigation.navigate('home');
               setActiveScreen('home');
             }}
           />
