@@ -20,6 +20,16 @@ export default (state, action) => {
         ...state,
         didTryAutoLogin: true,
       };
+    case 'SET_LOADING_START':
+      return {
+        ...state,
+        isLoading: true,
+      };
+    case 'SET_LOADING_FINISH':
+      return {
+        ...state,
+        isLoading: false,
+      };
     default:
       return state;
   }

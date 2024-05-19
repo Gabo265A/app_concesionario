@@ -16,10 +16,12 @@ const UserState = props => {
     didTryAutoLogin: false,
     userData: null,
     token: null,
+    isLoading: false,
   };
 
-  const signUp = (fullName, email, password) => {
-    createUserWithEmailAndPassword(getAuth(), email, password)
+  const signUp = async (fullName, email, password) => {
+    dispatch({type: 'SET_LOADING_START'});
+    return createUserWithEmailAndPassword(getAuth(), email, password)
       .then(userCredential => {
         const user = userCredential.user;
         const {uid, stsTokenManager} = user;
@@ -31,11 +33,16 @@ const UserState = props => {
           payload: {userData: userData, token: accessToken},
         });
         createUser(fullName, email, uid);
+        dispatch({type: 'SET_LOADING_FINISH'});
+        return [
+          'success',
+          'Usuario creado correctamente, en unos segundos serás redirigido a la pantalla principal.',
+        ];
         //saveDataToStorage(accessToken, uid, expirationDate);
       })
       .catch(error => {
-        console.log(error);
-        return error;
+        dispatch({type: 'SET_LOADING_FINISH'});
+        return ['error', error.message];
       });
   };
 
@@ -75,6 +82,7 @@ const UserState = props => {
         userData: state.userData,
         didTryAutoLogin: state.didTryAutoLogin,
         token: state.token,
+        isLoading: state.isLoading,
         firebase,
         signUp,
         Logout,
