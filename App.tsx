@@ -1,7 +1,7 @@
-import React from 'react'
+import React from 'react';
 import 'react-native-gesture-handler';
-import { NavigationContainer } from '@react-navigation/native';
-import { DrawerNavigation } from './src/navigation/DrawerNavigation';
+import {NavigationContainer} from '@react-navigation/native';
+import {DrawerNavigation} from './src/navigation/DrawerNavigation';
 import UserState from './src/context/users/UserState';
 import BottomTab from './src/components/BottomTab';
 import BottomBarState from './src/context/BottomBar/BottomBarState';
@@ -19,7 +19,7 @@ const App = () => {
         </ActiveState>
       </NavigationContainer>
     </UserState>
-  )
-}
+  );
+};
 
-export default App
+export default App;

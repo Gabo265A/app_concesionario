@@ -6,16 +6,21 @@ Juan Fernando Cano
 
 Librerias
 
-npm install react-native-gesture-handler react-native-reanimated
-npm install @react-navigation/drawer
-npm install react-native-screens react-native-safe-area-context
-npm install @react-navigation/native
-npm install react-native-paper
-npm install react-native-vector-icons
-npm install @react-navigation/stack
-npm install react-native-paper-dates --save
-npm install @rneui/themed @rneui/base
-npm install --save react-native-url-polyfill
-npm install --save @react-native-firebase/app
-npm install --save @react-native-firebase/auth
-npm install --save @react-native-firebase/firestore
+react-native-gesture-handler react-native-reanimated
+@react-navigation/drawer
+react-native-screens react-native-safe-area-context
+@react-navigation/native
+react-native-paper
+react-native-vector-icons
+@react-navigation/stack
+react-native-paper-dates --save
+@rneui/themed @rneui/base
+react-native-url-polyfill
+@react-native-firebase/app
+@react-native-firebase/auth
+@react-native-firebase/firestore
+firebase
+lodash
+@react-native-async-storage/async-storage
+
+Para instalar las líbrerias: npm install

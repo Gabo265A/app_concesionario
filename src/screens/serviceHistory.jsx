@@ -1,11 +1,9 @@
-import React, { useState } from 'react';
-import { View, Text, TextInput, Button, StyleSheet } from 'react-native';
+import React, {useState} from 'react';
+import {View, Text, TextInput, Button, StyleSheet} from 'react-native';
 
 const ServiceHistoryScreen = () => {
   const [customerID, setCustomerID] = useState('');
   const [serviceHistory, setServiceHistory] = useState([]);
-
-  
 
   return (
     <View style={styles.container}>
@@ -17,8 +15,8 @@ const ServiceHistoryScreen = () => {
         placeholder="ID del Cliente"
         keyboardType="numeric"
       />
-      
-      <Button title="Buscar Historial de Servicio"  />
+
+      <Button title="Buscar Historial de Servicio" />
 
       <Text style={styles.historyTitle}>Historial de Servicio:</Text>
       {serviceHistory.map(item => (
@@ -35,6 +33,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 25,
+    backgroundColor: 'white',
   },
   label: {
     fontSize: 18,
