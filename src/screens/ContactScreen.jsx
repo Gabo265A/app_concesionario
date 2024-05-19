@@ -1,6 +1,6 @@
 import React from 'react';
-import { View, StyleSheet, ScrollView } from 'react-native';
-import { Text } from 'react-native-paper';
+import {View, StyleSheet, ScrollView} from 'react-native';
+import {Text} from 'react-native-paper';
 
 const ContactScreen = () => {
   return (
@@ -14,7 +14,7 @@ const ContactScreen = () => {
         <Text style={styles.label}>Correo Electrónico:</Text>
         <Text style={styles.text}>concesionario@gmail.com</Text>
       </View>
-    </ScrollView >
+    </ScrollView>
   );
 };
 
@@ -22,7 +22,7 @@ const styles = StyleSheet.create({
   container: {
     flex: 1,
     padding: 25,
-    backgroundColor: '#EEEEEE'
+    backgroundColor: 'white',
   },
   title: {
     fontSize: 25,
