@@ -1,28 +1,33 @@
-import React, {useState} from 'react';
+import {useState, useContext} from 'react';
 import {View, StyleSheet} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
 import {Banner, Searchbar, Text} from 'react-native-paper';
-import {useSearchVehicle} from '../context/vehicles/vehicleContext';
+import {useSearchVehicle} from '../context/vehicles/VehicleContext';
 import DialogAlert from '../components/DialogAlert';
 import Helper from '../components/HelperText';
 import Vehicle from '../components/Vehicle';
 import {ActivityIndicator, MD2Colors} from 'react-native-paper';
+import VehicleContext from '../context/vehicles/VehicleContext';
 
 const VehicleSearchScreen = () => {
-  //Estados para la búsqueda de vehículos
-  const searchVehicle = useSearchVehicle();
-  const [isLoadingData, setIsLoadingData] = useState(false);
+  const {
+    filterVehicle,
+    isLoading,
+    searchVehicle,
+    setVehicleNotFound,
+    vehicleNotFound,
+    setFilterVehicle,
+  } = useContext(VehicleContext);
 
-  //Estados para la barra de búsqueda
-  const [carInformation, setCarInformation] = useState(null);
-  const [searchQuery, setSearchQuery] = React.useState('');
+  //Estados para el campo de búsqueda
+  const [searchQuery, setSearchQuery] = useState('');
 
   //Estados para mostrar el helper
   const [showHelper, setShowHelper] = useState(false);
   const [customHelper, setCustomHelper] = useState([]);
   const [customHelperMessage, setCustomHelperMessage] = useState('');
 
-  //Estado para mostrar el activity indicator
+  //Estado para mostrar el dialog alert
   const [visible, setVisible] = useState(false);
 
   return (
@@ -52,7 +57,12 @@ const VehicleSearchScreen = () => {
               }}
               onClearIconPress={() => {
                 setShowHelper(false);
-                setCarInformation(null);
+                setSearchQuery('');
+                if (vehicleNotFound) {
+                  setVehicleNotFound();
+                } else {
+                  setFilterVehicle();
+                }
               }}
               onChangeText={query => {
                 setSearchQuery(query);
@@ -91,15 +101,9 @@ const VehicleSearchScreen = () => {
                   setSearchQuery(searchQuery.trim().replace(/\s{2,}/g, ' '));
                   searchVehicle(
                     (keyword = searchQuery.trim().replace(/\s{2,}/g, ' ')),
-                    (setVehicles = setCarInformation),
-                    (showActivity = setIsLoadingData),
                   );
                 } else {
-                  searchVehicle(
-                    (keyword = searchQuery),
-                    (setVehicles = setCarInformation),
-                    (showActivity = setIsLoadingData),
-                  );
+                  searchVehicle((keyword = searchQuery));
                 }
               }}
             />
@@ -111,15 +115,15 @@ const VehicleSearchScreen = () => {
               />
             )}
           </View>
-          {isLoadingData ? (
+          {isLoading ? (
             <ActivityIndicator
               animating={true}
               color={MD2Colors.deepPurple500}
               size={100}
               style={{paddingTop: 100}}
             />
-          ) : carInformation && carInformation.length >= 1 ? (
-            carInformation.map(vehicle => (
+          ) : filterVehicle && filterVehicle.length >= 1 ? (
+            filterVehicle.map(vehicle => (
               <Vehicle
                 key={vehicle.id}
                 imageUrl={vehicle.image}
@@ -129,7 +133,7 @@ const VehicleSearchScreen = () => {
                 iconCar={vehicle.icon}
               />
             ))
-          ) : carInformation ? (
+          ) : vehicleNotFound ? (
             <View
               style={{
                 padding: 20,

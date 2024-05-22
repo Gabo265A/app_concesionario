@@ -1,19 +1,19 @@
-import React from 'react';
-import {ScrollView, View, StyleSheet} from 'react-native';
+import {useContext, useEffect} from 'react';
+import {ScrollView, StyleSheet} from 'react-native';
 import Vehicle from '../components/Vehicle';
-import {
-  useVehicleContext,
-  useIsLoadingData,
-} from '../context/vehicles/vehicleContext';
 import {ActivityIndicator, MD2Colors} from 'react-native-paper';
+import VehicleContext from '../context/vehicles/VehicleContext';
 
 const VehicleList = () => {
-  const catalog = useVehicleContext();
-  const isLoadingData = useIsLoadingData();
+  const {catalog, isLoading, getCatalog} = useContext(VehicleContext);
+
+  useEffect(() => {
+    getCatalog();
+  }, []);
 
   return (
-    <ScrollView contentContainerStyle={isLoadingData && styles.centered}>
-      {isLoadingData ? (
+    <ScrollView contentContainerStyle={isLoading && styles.centered}>
+      {isLoading ? (
         <ActivityIndicator
           animating={true}
           color={MD2Colors.deepPurple500}
