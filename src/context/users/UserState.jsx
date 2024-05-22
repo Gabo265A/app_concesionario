@@ -32,7 +32,6 @@ const UserState = props => {
           type: 'SIGNUP',
           payload: {userData: userData, token: accessToken},
         });
-        createUser(fullName, email, uid);
         dispatch({type: 'SET_LOADING_FINISH'});
         return [
           'success',
@@ -53,9 +52,69 @@ const UserState = props => {
       email,
       uid,
       signUpDate,
+      userImage: 'Sin foto de perfil',
     };
     firebase.db.collection('usuarios').doc(uid).set(userData);
     return userData;
+  };
+
+  const signIn = async (email, password) => {
+    dispatch({type: 'SET_LOADING_START'});
+    return signInWithEmailAndPassword(getAuth(), email, password)
+      .then(userCredential => {
+        const user = userCredential.user;
+        const {uid, stsTokenManager} = user;
+        const {accessToken, expirationTime} = stsTokenManager;
+        const expirationDate = new Date(expirationTime);
+        getUserData(uid, accessToken);
+        dispatch({type: 'SET_LOADING_FINISH'});
+
+        //saveDataToStorage(accessToken, uid, expirationDate);
+        return [
+          'success',
+          'Inicio de sesión correcto, en unos segundos serás redirigido a la pantalla principal.',
+        ];
+      })
+      .catch(error => {
+        dispatch({type: 'SET_LOADING_FINISH'});
+        console.log(error.code, error.message);
+        if (
+          error.code === 'auth/invalid-credential' ||
+          error.code === 'auth/missing-password' ||
+          error.code === 'auth/invalid-email'
+        ) {
+          return ['wrongCredentials', 'Correo o contraseña inválidos.'];
+        } else {
+          console.log('asffasdasd');
+        }
+        return ['error', error.message];
+      });
+  };
+
+  const getUserData = async (uid, accessToken) => {
+    firebase.db.collection('usuarios').onSnapshot(querySnapshot);
+
+    function querySnapshot(snapshot) {
+      let usuario = snapshot.docs.map(doc => {
+        if (doc.id === uid) {
+          return {
+            id: doc.id,
+            ...doc.data(),
+          };
+        }
+      });
+      const userData = {
+        fullName: usuario[0].fullName,
+        email: usuario[0].email,
+        uid: usuario[0].uid,
+        signUpDate: usuario[0].signUpDate,
+        userImage: usuario[0].userImage,
+      };
+      dispatch({
+        type: 'SIGNIN',
+        payload: {userData: userData, token: accessToken},
+      });
+    }
   };
 
   const saveDataToStorage = (token, userId, expirationDate) => {
@@ -85,6 +144,7 @@ const UserState = props => {
         isLoading: state.isLoading,
         firebase,
         signUp,
+        signIn,
         Logout,
       }}>
       {props.children}
