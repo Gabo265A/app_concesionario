@@ -39,13 +39,18 @@ const BottomTab = () => {
           <IconButton
             icon="account"
             size={30}
-            iconColor={activeScreen === 'userProfile' ? '#663399' : '#524f4f'}
+            iconColor={
+              activeScreen === 'Welcome' || activeScreen === 'userProfile'
+                ? '#663399'
+                : '#524f4f'
+            }
             onPress={() => {
-              {
-                didTryAutoLogin
-                  ? console.log('Crear screen del profile')
-                  : navigation.navigate('Welcome');
+              if (didTryAutoLogin) {
+                navigation.navigate('userProfile');
                 setActiveScreen('userProfile');
+              } else {
+                navigation.navigate('Welcome');
+                setActiveScreen('Welcome');
               }
             }}
           />

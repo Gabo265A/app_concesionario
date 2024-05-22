@@ -8,6 +8,13 @@ export default (state, action) => {
         token: payload.token,
         didTryAutoLogin: true,
       };
+    case 'SIGNIN':
+      return {
+        ...state,
+        userData: payload.userData,
+        token: payload.token,
+        didTryAutoLogin: true,
+      };
     case 'LOGOUT':
       return {
         ...state,
