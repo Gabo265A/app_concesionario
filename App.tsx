@@ -9,16 +9,16 @@ import ActiveState from './src/context/ActiveContext/ActiveState';
 
 const App = () => {
   return (
-    <UserState>
-      <NavigationContainer>
+    <NavigationContainer>
+      <UserState>
         <ActiveState>
           <BottomBarState>
             <DrawerNavigation />
             <BottomTab />
           </BottomBarState>
         </ActiveState>
-      </NavigationContainer>
-    </UserState>
+      </UserState>
+    </NavigationContainer>
   );
 };
 

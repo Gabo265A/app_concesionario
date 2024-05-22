@@ -54,7 +54,7 @@ const UserState = props => {
       signUpDate,
       userImage: 'Sin foto de perfil',
     };
-    firebase.db.collection('usuarios').doc(uid).set(userData);
+    firebase.db.collection('users').doc(uid).set(userData);
     return userData;
   };
 
@@ -92,7 +92,7 @@ const UserState = props => {
   };
 
   const getUserData = async (uid, accessToken) => {
-    firebase.db.collection('usuarios').onSnapshot(querySnapshot);
+    firebase.db.collection('users').onSnapshot(querySnapshot);
 
     function querySnapshot(snapshot) {
       let usuario = snapshot.docs.map(doc => {

@@ -23,14 +23,15 @@ import {
 } from 'react-native-paper';
 import {BackHandler} from 'react-native';
 import {ScrollView} from 'react-native-gesture-handler';
+import {SafeAreaView} from 'react-native-safe-area-context';
 
 //Contexts
-import {VehicleContext} from '../context/vehicles/vehicleContext';
-import {SafeAreaView} from 'react-native-safe-area-context';
 import UserContext from '../context/users/UserContext';
-
 import BottomBarContext from '../context/BottomBar/BottomBarContext';
 import ActiveContext from '../context/ActiveContext/ActiveContext';
+
+//States
+import VehicleState from '../context/vehicles/VehicleState';
 
 const Drawer = createDrawerNavigator();
 
@@ -248,8 +249,8 @@ function CustomDrawerContent(props) {
           onPress={() => {
             if (didTryAutoLogin) {
               Logout();
-              setActiveScreen('Home');
-              props.navigation.navigate('Home');
+              setActiveScreen('home');
+              props.navigation.navigate('home');
             } else {
               props.navigation.navigate('Welcome');
               setActiveScreen('Welcome');
@@ -281,9 +282,9 @@ export function DrawerNavigation() {
           unmountOnBlur: true,
         }}>
         {props => (
-          <VehicleContext>
+          <VehicleState>
             <Search {...props} />
-          </VehicleContext>
+          </VehicleState>
         )}
       </Drawer.Screen>
       <Drawer.Screen
@@ -301,9 +302,9 @@ export function DrawerNavigation() {
           unmountOnBlur: true,
         }}>
         {props => (
-          <VehicleContext>
+          <VehicleState>
             <VehicleList {...props} />
-          </VehicleContext>
+          </VehicleState>
         )}
       </Drawer.Screen>
       <Drawer.Screen
