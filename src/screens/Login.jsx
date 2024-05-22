@@ -16,9 +16,9 @@ import DialogAlert from '../components/DialogAlert';
 import ActiveContext from '../context/ActiveContext/ActiveContext';
 
 const Login = props => {
-  const [email, setEmail] = useState('gabriel@gmail.com');
+  const [email, setEmail] = useState('');
   const emailRef = useRef(null);
-  const [password, setPassword] = useState('Gabriel123"');
+  const [password, setPassword] = useState('');
   const passwordRef = useRef(null);
   const [showPassword, setShowPassword] = useState(false);
   const {signIn, isLoading, didTryAutoLogin} = useContext(UserContext);
