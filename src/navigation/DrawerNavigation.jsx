@@ -10,6 +10,7 @@ import Home from '../screens/Home';
 import Login from '../screens/Login';
 import Welcome from '../screens/Welcome';
 import Register from '../screens/Register';
+import UserProfile from '../screens/UserProfile';
 
 import React, {useEffect, useContext} from 'react';
 import {createDrawerNavigator} from '@react-navigation/drawer';
@@ -86,10 +87,13 @@ function CustomDrawerContent(props) {
           size={100}
           icon="account"
           onPress={() => {
-            didTryAutoLogin
-              ? console.log('Crear screen del profile')
-              : props.navigation.navigate('Welcome');
-            setActiveScreen('userProfile');
+            if (didTryAutoLogin) {
+              props.navigation.navigate('userProfile');
+              setActiveScreen('userProfile');
+            } else {
+              props.navigation.navigate('Welcome');
+              setActiveScreen('Welcome');
+            }
           }}
           style={{
             borderColor: '#e7e6e6',
@@ -242,9 +246,13 @@ function CustomDrawerContent(props) {
           mode="contained"
           style={{}}
           onPress={() => {
-            {
-              didTryAutoLogin ? Logout() : props.navigation.navigate('Welcome');
-              setActiveScreen('userProfile');
+            if (didTryAutoLogin) {
+              Logout();
+              setActiveScreen('Home');
+              props.navigation.navigate('Home');
+            } else {
+              props.navigation.navigate('Welcome');
+              setActiveScreen('Welcome');
             }
           }}>
           {didTryAutoLogin ? 'Cerrar sesión' : 'Iniciar sesión'}
@@ -357,6 +365,14 @@ export function DrawerNavigation() {
       <Drawer.Screen
         name="SignUp"
         component={Register}
+        options={{
+          headerShown: false,
+          unmountOnBlur: true,
+        }}
+      />
+      <Drawer.Screen
+        name="userProfile"
+        component={UserProfile}
         options={{
           headerShown: false,
           unmountOnBlur: true,
