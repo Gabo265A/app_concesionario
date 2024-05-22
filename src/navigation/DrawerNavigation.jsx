@@ -249,8 +249,8 @@ function CustomDrawerContent(props) {
           onPress={() => {
             if (didTryAutoLogin) {
               Logout();
-              setActiveScreen('Home');
-              props.navigation.navigate('Home');
+              setActiveScreen('home');
+              props.navigation.navigate('home');
             } else {
               props.navigation.navigate('Welcome');
               setActiveScreen('Welcome');
