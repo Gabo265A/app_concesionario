@@ -36,33 +36,31 @@ Para los usuarios que se logueen en la aplicación podrán ver el historial de s
 
 ---
 
+### Primer paso: Configurar el entorno
+
 En este archivo tienes una guía paso a paso para que configures todo el entorno: https://heyzine.com/flip-book/c5d86388f5.html
 
-### Primer paso: Iniciar el servidor metro
+### Segundo paso: Iniciar el servidor metro
 
 Para iniciar **Metro** ubicate en la carpeta raíz del proyecto y ejecuta alguno de los siguientes comandos:
 
-    ```bash
     # using npm
     npm start
 
     # OR using Yarn
     yarn start
-    ```
 
-### Segundo paso: Iniciar la aplicación
+### Tercer paso: Iniciar la aplicación
 
 Cuando se inicia Metro este se ejecuta en su propia terminal. Abre otra terminal y vuelve a ubicarte en la carpeta raíz del proyecto.
 
 Como esta aplicación solo funciona en _Android_ ejecuta el siguiente comando en esa nueva terminal:
 
-    ```bash
     # using npm
     npm run android
 
     # OR using Yarn
     yarn android
-    ```
 
 Si todo salío bien, deberías ver como se ejecuta la aplicación en tu emulador de android o disposito real.
 
@@ -72,32 +70,30 @@ En general la mayoría de librerías que usamos es para mejorar la parte gráfic
 
 Para instalar las librerías de una manera más rápida se puede usar el comando
 
-    ```bash
     npm install
-    ```
 
 este comando instalara todas las líbrerias que se encuentran dentro del package.json
 
 De manera más detallada estas son las líbrerias que se usaron:
 
-    npm install react-native-gesture-handler
-    npm install react-native-reanimated
-    npm install @react-navigation/drawer
-    npm install react-native-screens
-    npm install react-native-safe-area-context
-    npm install @react-navigation/native
-    npm install react-native-paper
-    npm install react-native-vector-icons
-    npm install @react-navigation/stack
-    npm install react-native-paper-dates --save
-    npm install @rneui/themed @rneui/base
-    npm install react-native-url-polyfill
-    npm install @react-native-firebase/app
-    npm install @react-native-firebase/auth
-    npm install @react-native-firebase/firestore
-    npm install firebase
-    npm install lodash
-    npm install @react-native-async-storage/async-storage
+    npm install react-native-gesture-handler &&
+    npm install react-native-reanimated &&
+    npm install @react-navigation/drawer &&
+    npm install react-native-screens &&
+    npm install react-native-safe-area-context &&
+    npm install @react-navigation/native &&
+    npm install react-native-paper &&
+    npm install react-native-vector-icons &&
+    npm install @react-navigation/stack &&
+    npm install react-native-paper-dates --save &&
+    npm install @rneui/themed @rneui/base &&
+    npm install react-native-url-polyfill &&
+    npm install @react-native-firebase/app &&
+    npm install @react-native-firebase/auth &&
+    npm install @react-native-firebase/firestore &&
+    npm install firebase &&
+    npm install lodash &&
+    npm install @react-native-async-storage/async-storage &&
 
 ## Cómo contribuir
 
