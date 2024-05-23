@@ -1,5 +1,5 @@
 <h1 align="center">Aplicación sobre concesionario</h1>
-<p align="center"> Logo e imagen o gif de la interfaz principal de la herramienta</p>
+<p align="center"> Logo de nuestra aplicación</p>
 <p align="center"><img src="https://i.ibb.co/ts5QR3Z/ic-launcher.png"/></p>
 
 ## Tabla de contenidos:
@@ -112,5 +112,7 @@ Para solicitar acceso escribe directamente al usuario Gabo265A.
 ---
 
 Gabriel Jaime Loaiza Arboleda [Gabo265A](https://github.com/Gabo265A)
+
 Mariana Garces Palacios [mariana-pixel](https://github.com/mariana-pixel)
+
 Juan Fernando Cano [Juancahe123](https://github.com/Juancahe123)
