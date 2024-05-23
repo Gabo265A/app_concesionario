@@ -53,6 +53,7 @@ const UserState = props => {
       uid,
       signUpDate,
       userImage: 'Sin foto de perfil',
+      offersEnable: false,
     };
     firebase.db.collection('users').doc(uid).set(userData);
     return userData;
@@ -109,6 +110,7 @@ const UserState = props => {
         uid: usuario[0].uid,
         signUpDate: usuario[0].signUpDate,
         userImage: usuario[0].userImage,
+        offersEnable: usuario[0].offersEnable,
       };
       dispatch({
         type: 'SIGNIN',
@@ -133,6 +135,13 @@ const UserState = props => {
     dispatch({type: 'LOGOUT'});
   };
 
+  const ChangeOffersStatus = async (uid, offersEnable) => {
+    await firebase.db.collection('users').doc(uid).update({
+      offersEnable: offersEnable,
+    });
+    dispatch({type: 'CHANGE_OFFERS_STATUS', payload: {offersEnable}});
+  };
+
   const [state, dispatch] = useReducer(UserReducer, initialState);
 
   return (
@@ -146,6 +155,7 @@ const UserState = props => {
         signUp,
         signIn,
         Logout,
+        ChangeOffersStatus,
       }}>
       {props.children}
     </UserContext.Provider>

@@ -37,6 +37,14 @@ export default (state, action) => {
         ...state,
         isLoading: false,
       };
+    case 'CHANGE_OFFERS_STATUS':
+      return {
+        ...state,
+        userData: {
+          ...state.userData,
+          offersEnable: payload.offersEnable,
+        },
+      };
     default:
       return state;
   }

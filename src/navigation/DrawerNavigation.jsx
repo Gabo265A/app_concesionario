@@ -32,6 +32,7 @@ import ActiveContext from '../context/ActiveContext/ActiveContext';
 
 //States
 import VehicleState from '../context/vehicles/VehicleState';
+import ServiceHistoryState from '../context/serviceHistory/ServiceHistoryState';
 
 const Drawer = createDrawerNavigator();
 
@@ -317,20 +318,28 @@ export function DrawerNavigation() {
       />
       <Drawer.Screen
         name="workshopService"
-        component={WorkshopService}
         options={{
           headerShown: false,
           unmountOnBlur: true,
-        }}
-      />
+        }}>
+        {props => (
+          <ServiceHistoryState>
+            <WorkshopService {...props} />
+          </ServiceHistoryState>
+        )}
+      </Drawer.Screen>
       <Drawer.Screen
         name="serviceHistory"
-        component={ServiceHistory}
         options={{
           headerShown: false,
           unmountOnBlur: true,
-        }}
-      />
+        }}>
+        {props => (
+          <ServiceHistoryState>
+            <ServiceHistory {...props} />
+          </ServiceHistoryState>
+        )}
+      </Drawer.Screen>
       <Drawer.Screen
         name="offers"
         component={Offers}
