@@ -21,19 +21,23 @@ const ServiceHistoryState = props => {
   };
 
   const getHistory = async uid => {
+    console.log('getHistory');
     try {
       dispatch({type: 'LOADING_HISTORY', payload: {loadingHistory: true}});
       firebase.db.collection('serviceHistory').onSnapshot(querySnapshot);
 
       function querySnapshot(snapshot) {
-        let history = snapshot.docs.map(doc => {
-          if (doc.data().userUID === uid) {
-            return {
-              id: doc.id,
-              ...doc.data(),
-            };
-          }
-        });
+        let history = snapshot.docs
+          .filter(doc => doc.data().userUID === uid)
+          .map(doc => ({
+            id: doc.id,
+            ...doc.data(),
+          }));
+        console.log(history.length);
+        if (history.length === 0) {
+          console.log('No hay historial de servicios');
+          history = null;
+        }
         dispatch({type: 'GET_HISTORY', payload: {serviceHistory: history}});
         dispatch({type: 'LOADING_HISTORY', payload: {loadingHistory: false}});
       }
