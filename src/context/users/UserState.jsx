@@ -93,17 +93,16 @@ const UserState = props => {
   };
 
   const getUserData = async (uid, accessToken) => {
-    firebase.db.collection('users').onSnapshot(querySnapshot);
+    let usuario = [];
+    await firebase.db.collection('users').get().then(querySnapshot);
 
     function querySnapshot(snapshot) {
-      let usuario = snapshot.docs.map(doc => {
-        if (doc.id === uid) {
-          return {
-            id: doc.id,
-            ...doc.data(),
-          };
-        }
-      });
+      usuario = snapshot.docs
+        .filter(doc => doc.data().uid === uid)
+        .map(doc => ({
+          id: doc.id,
+          ...doc.data(),
+        }));
       const userData = {
         fullName: usuario[0].fullName,
         email: usuario[0].email,
