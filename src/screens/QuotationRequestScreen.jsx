@@ -1,4 +1,4 @@
-import React, {useState, useContext, useRef} from 'react';
+import React, {useState, useContext, useRef, useEffect} from 'react';
 import {StyleSheet, View, ScrollView} from 'react-native';
 import {
   TextInput,
@@ -26,6 +26,13 @@ const QuotationRequestScreen = () => {
   const [phone, setPhone] = useState('');
   const phoneRef = useRef();
   const [sendingRequest, setSendingRequest] = useState(false);
+
+  useEffect(() => {
+    if (userData) {
+      setFullName(userData.fullName);
+      setEmail(userData.email);
+    }
+  }, [userData]);
 
   //Estados para mostrar el helper
   const [showHelper, setShowHelper] = useState(false);
@@ -77,7 +84,7 @@ const QuotationRequestScreen = () => {
         setPhone('');
         setEmail(userData ? userData.email : '');
         setCustomHelperMessage(
-          '¡Solicitud enviada correctamente!\n\nEn breve nos comunicaremos con usted para confirmar la cita.',
+          '¡Solicitud enviada correctamente!\n\nEn breve nos comunicaremos con usted.',
         );
         setVisible(true);
         setSendingRequest(false);
@@ -205,6 +212,7 @@ const QuotationRequestScreen = () => {
             }
             label="Correo"
             value={email}
+            editable={userData ? false : true}
             keyboardType="email-address"
             onBlur={() => {
               setShowHelper(false);
